@@ -1,17 +1,18 @@
 # SQLite Chat Assistant
 
-## 📌 Description
-A Flask-based chat assistant that converts **natural language queries** into **SQL** and fetches results from an **SQLite database**.
+## 🔗 Deployed API
+- **Base URL:** [https://sqlitechatassist.onrender.com](https://sqlitechatassist.onrender.com)
+- **Test Query Endpoint:** `/query`
 
 ## 🛠️ Features
+- Accepts natural language queries and converts them into SQL.
 - Supports queries like:
   - `"Who is the manager of Sales?"`
   - `"List all employees hired after 2022-01-01"`
-- Handles **invalid queries gracefully**.
-- Case-insensitive and **removes extra spaces/punctuation**.
+- Returns responses in JSON format.
 
-## 🚀 Installation
-1. **Clone the Repository**:
-   ```sh
-   git clone <repo-url>
-   cd sqlite-chat-assistant
+## 🚀 How to Use
+### **1️⃣ API Testing with cURL**
+Run the following command:
+```sh
+curl -X POST https://sqlitechatassist.onrender.com/query -H "Content-Type: application/json" -d "{\"query\": \"Who is the manager of Sales?\"}"
