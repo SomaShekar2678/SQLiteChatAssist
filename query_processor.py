@@ -1,7 +1,7 @@
 import re
 
 def convert_query_to_sql(user_query):
-    print(f"🔍 Received Query: {user_query}")  # Debugging print
+    print(f"🔍 Received Query: {user_query}") 
 
     # Normalize input
     user_query = user_query.lower().strip().rstrip('?').rstrip('.')  # Remove trailing ? and .
@@ -25,12 +25,12 @@ def convert_query_to_sql(user_query):
     
     for pattern, sql_template in patterns.items():
         match = re.match(pattern, user_query)
-        print(f"🧐 Trying pattern: {pattern}")  # Debugging print
+        print(f"🧐 Trying pattern: {pattern}")  
         if match:
             matched_value = match.groups()[0].strip()  # Trim spaces in captured groups
             sql_query = sql_template.format(matched_value)
-            print(f"✅ SQL Generated: {sql_query}")  # Debugging print
+            print(f"✅ SQL Generated: {sql_query}")  
             return sql_query
     
-    print("❌ No match found!")  # Debugging print
+    print("❌ No match found!")  
     return None
