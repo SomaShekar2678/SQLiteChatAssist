@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite Chat Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #response {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>SQLite Chat Assistant</h2>
+    <p>Enter your query below:</p>
+
+    <input type="text" id="userQuery" placeholder="Type your query here...">
+    <button onclick="sendQuery()">Submit</button>
+
+    <p id="response"></p>
+
+    <script>
+        function sendQuery() {
+            let query = document.getElementById("userQuery").value;
+            if (!query) {
+                alert("Please enter a query.");
+                return;
+            }
+
+            fetch("https://sqlitechatassist.onrender.com/query", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response").innerText = "Response: " + JSON.stringify(data.response || data.error);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("response").innerText = "Error connecting to the API.";
+            });
+        }
+    </script>
+
+</body>
+</html>
